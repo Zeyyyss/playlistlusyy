@@ -1,0 +1,172 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>songs that remind me of you ♡</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:ital,wght@0,500;1,500&display=swap');
+
+*{box-sizing:border-box}
+body{
+ margin:0;background:#fff5f7;color:#815c69;
+ font-family:'DM Sans',sans-serif;
+}
+main{max-width:520px;margin:auto;padding:28px 20px 50px}
+.hero{text-align:center;padding:35px 5px 28px}
+.heart{font-size:30px;color:#d88da6}
+.tag{font-size:10px;letter-spacing:3px;color:#bd8296}
+h1,h2{font-family:'Playfair Display',serif;font-weight:500}
+h1{font-size:43px;line-height:1.2;color:#b66d88;margin:18px 0}
+.sub{font-size:13px;line-height:1.9}
+.cover{
+ background:linear-gradient(140deg,#f9dbe5,#f6c7d7,#fff0f4);
+ border-radius:22px;padding:30px 18px;text-align:center;
+ margin:20px 0 30px;
+}
+.cover .disc{font-size:55px;margin:8px}
+.cover h2{color:#a95f7b;font-size:23px}
+.track{
+ background:#fff;border:1px solid #f2dfe6;
+ border-radius:18px;padding:16px;margin:13px 0;
+}
+.tracktop{display:flex;gap:13px;align-items:center}
+.num{background:#fce8ee;color:#b76e89;
+ border-radius:12px;width:43px;height:43px;
+ display:grid;place-items:center;flex-shrink:0}
+.info{flex:1}
+.info strong{font-size:13px;display:block}
+.info small{display:block;margin-top:5px;color:#b28b99}
+a{color:#b36782;text-decoration:none;font-size:12px}
+.listen{display:inline-block;margin-top:10px}
+.note{
+ display:none;margin-top:15px;padding:14px;
+ background:#fff5f8;border-radius:12px;
+ font-size:13px;line-height:1.9;white-space:pre-line;
+}
+.toggle{
+ border:0;background:none;color:#b66d88;
+ font:inherit;font-size:12px;padding:10px 0 0;cursor:pointer
+}
+.end{text-align:center;padding:40px 8px 15px;line-height:2}
+.end h2{font-size:29px;color:#b66d88}
+footer{text-align:center;font-size:11px;color:#bf96a4;padding:20px}
+</style>
+</head>
+<body>
+<main>
+<header class="hero">
+ <div class="heart">♡</div>
+ <p class="tag">A LITTLE PLAYLIST FOR YOU</p>
+ <h1>songs that<br>remind me of you.</h1>
+ <p class="sub">
+  Hi, Lusi. I made you a playlist.<br>
+  Because apparently, one text wasn't enough. 😭
+  <br><br>
+  Each song has a little message.<br>
+  No pressure, just listen and smile, okay?
+ </p>
+</header>
+
+<div class="cover">
+ <div class="disc">🎧</div>
+ <h2>for my favorite human ♡</h2>
+ <p class="sub">5 songs · a few feelings · one Lusi</p>
+ <p class="sub">curated by Zidan, professionally overthinking</p>
+</div>
+
+<div id="tracks"></div>
+
+<section class="end">
+ <div class="heart">♡</div>
+ <h2>That's all, Lus.</h2>
+ <p class="sub">
+  I don't know what the future holds for us.
+  <br>But I'm glad I got to know you.
+  <br><br>
+  I hope these songs make you smile,
+  even just a little.
+  <br><br>
+  And if you smiled while reading this...
+  <br>I'll consider that a tiny win. WKWK. 🤍
+  <br><br>
+  Take care, okay?
+  <br><b>— Zidan ♡</b>
+ </p>
+</section>
+
+<footer>made with love & a suspicious amount of overthinking ♡</footer>
+</main>
+
+<script>
+const songs = [
+  {
+    title: "Glue Song",
+    artist: "beabadoobee",
+    url: "https://open.spotify.com/search/beabadoobee%20Glue%20Song",
+    label: "the beginning of something ♡",
+    note: "Lus, idk how someone can become this special without even trying that hard. Like, girl, what kind of magic is this?? 😭"
+  },
+  {
+    title: "Melting",
+    artist: "Kehlani",
+    url: "https://open.spotify.com/search/Kehlani%20Melting",
+    label: "you make me nervous 🫠",
+    note: "You ever meet someone and suddenly forget how to act normal? Yeah. Apparently, my brain takes a vacation whenever it comes to you. Very embarrassing, honestly."
+  },
+  {
+    title: "Best Part",
+    artist: "Daniel Caesar ft. H.E.R.",
+    url: "https://open.spotify.com/search/Daniel%20Caesar%20H.E.R.%20Best%20Part",
+    label: "you make ordinary days better",
+    note: "No reason, karna emang lagu ini nempel banget sama kamu wkwk"
+  },
+  {
+    title: "I Love Lucy",
+    artist: "Khamari",
+    url: "https://open.spotify.com/search/Khamari%20I%20Love%20Lucy",
+    label: "okay, the title is suspicious 👀",
+    note: "Ntah lah,,, aku dengerin lagu ini karna ada nama kamunya hehe"
+  },
+  {
+    title: "Sure Thing",
+    artist: "Miguel",
+    url: "https://open.spotify.com/search/Miguel%20Sure%20Thing",
+    label: "if only things were that simple ♡",
+    note: "I don't know what we are, Lus. But I know what you mean to me. Maybe I can't promise what the future looks like, but I can be honest about how I feel right now. And yeah, you matter to me. A lot. ♡"
+  }
+];
+const container=document.getElementById('tracks');
+
+songs.forEach((s,i)=>{
+ const card=document.createElement('article');
+ card.className='track';
+ card.innerHTML=`
+  <div class="tracktop">
+   <div class="num">${String(i+1).padStart(2,'0')}</div>
+   <div class="info">
+    <strong>${s.title}</strong>
+    <small>${s.artist} · ${s.label}</small>
+   </div>
+   <span>♡</span>
+  </div>
+  <a class="listen" href="${s.url}" target="_blank" rel="noopener">▶ Listen to this song ↗</a>
+  <br>
+  <button class="toggle" aria-expanded="false">Read my little note ↓</button>
+  <div class="note"></div>
+ `;
+ const button=card.querySelector('.toggle');
+ const note=card.querySelector('.note');
+ note.textContent=s.note;
+ button.addEventListener('click',()=>{
+  const open=note.style.display==='block';
+  note.style.display=open?'none':'block';
+  button.textContent=open?'Read my little note ↓':'Hide my little note ↑';
+  button.setAttribute('aria-expanded',String(!open));
+ });
+ container.appendChild(card);
+});
+</script>
+</body>
+</html>
